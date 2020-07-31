@@ -1,14 +1,15 @@
 
-function submitProfile(evt) {
-    evt.preventDefault();
+// function submitProfile(evt) {
+//     evt.preventDefault();
 
-    $.post("/profile",
-        $('#profile-form').serialize(),
-        function (result) {
-            $('#profile').append("<p>" + "Name: " + result.fullname + "</p>");
-        }
-    );
-}
+//     $.post("/profile",
+//       // the data will be the serialized #profile-form that is JSON
+//         $('#profile-form').serialize(),
+//         function (result) {
+//             $('#profiles').append("<p>" + "Name: " + result.fullname + "</p>");
+//         }
+//     );
+// }
 
 $("#profile-form").on('submit', (evt) => {
   evt.preventDefault();
@@ -19,9 +20,9 @@ $("#profile-form").on('submit', (evt) => {
     occupation: $('#occupation-field').val()
   };
 
-  $.post('/api/profile', (response) => {
+  $.post('/profile', formData, (response) => {
     $('#profiles').append(`
-      <li>${response.name} the ${response.occupation} is ${response.age}</li>
+      <li>${response.fullname} the ${response.occupation} is ${response.age}</li>
     `);
   });
 });
